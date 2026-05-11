@@ -65,6 +65,7 @@
             <th>Oferente</th>
             <th>Requisitos cumplidos</th>
             <th>% Coincidencia</th>
+            <th>Detalle</th>
             <th>Acciones</th>
         </tr>
         </thead>
@@ -73,6 +74,12 @@
             <td th:text="${c.oferente.nombre + ' ' + c.oferente.primerApellido}"></td>
             <td th:text="${c.cumplidos + ' / ' + c.total}"></td>
             <td th:text="${#numbers.formatDecimal(c.porcentaje, 1, 'POINT', 2, 'COMMA') + '%'}"></td>
+            <td>
+                <span th:each="d, iter : ${c.detalle}">
+                    <span th:text="${d.nombreCaracteristica + ' (nivel ' + d.nivelPide + '): tiene nivel ' + d.nivelTiene}"></span>
+                    <br th:if="${!iter.last}"/>
+                </span>
+            </td>
             <td>
                 <a th:href="@{/empresa/candidatos/{id}(id=${c.oferente.id}, puestoId=${puesto.id})}"
                    class="btn btn-sm btn-primary">Ver detalle</a>

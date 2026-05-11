@@ -317,7 +317,7 @@ public class Controller {
         model.addAttribute("monedaSeleccionada", moneda);
 
         if (usuario instanceof Oferente oferente) {
-            model.addAttribute("resultados", serviceP.buscarPuestosParaOferente(caracteristicaIds, moneda));
+            model.addAttribute("resultados", serviceP.buscarPuestosParaOferente(caracteristicaIds, moneda, oferente));
 
             Set<Integer> postuladosIds = serviceP.findAllActivos().stream().filter(p -> servicePO.yaPostulado(oferente, p)).map(Puesto::getId).collect(toSet());
             model.addAttribute("postulados", postuladosIds);
